@@ -3,11 +3,12 @@ using System.Collections.Generic;
 
 namespace DependencyInversion
 {
-    class Program
+    class InjectorClass
     {
         static void Main(string[] args)
         {
-            EmployeeBL employeeBL = new EmployeeBL(new EmployeeDAL());
+            IEmployeeDAL empDal = Factory.GetObjectOfEmployeeDAL();
+            EmployeeBL employeeBL = new EmployeeBL(empDal);
             List<Employee> ListEmployee = employeeBL.GetAllEmployees();
             foreach (Employee emp in ListEmployee)
             {
